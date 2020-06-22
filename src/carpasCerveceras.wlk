@@ -28,6 +28,7 @@ class CarpasCerveceras {
 	method entraPersona(persona){personasDentro.add(persona)}
 	
 	method ingresaPersona(persona){
+		
 		if( self.quiereEntrar(persona) 
 			and self.dejaIngresar(persona) 
 			and self.puedeEntrar(persona))
