@@ -1,0 +1,36 @@
+import personas.*
+import marcas.*
+import jarras.*
+import carpasCerveceras.*
+
+test "Segunda parte" {
+	
+	const andesRubia = new CervezaRubia()
+	const franco = new Alemanes()
+	const carpaRubia = new CarpasCerveceras()
+	const jarra = new Jarras()
+	
+	andesRubia.pais("alemania")
+	andesRubia.lupulo(5)
+	andesRubia.graduacionAlcoholica(4)
+	carpaRubia.limiteDeGente(2)
+	carpaRubia.marcaQueVende(andesRubia)
+	
+	franco.nacionalidad("alemania")
+	franco.peso(80)
+	franco.nivelDeAguante(50)
+	franco.marcasQueLeGustan(andesRubia)
+	jarra.capacidad(1)
+	jarra.contenido(andesRubia)
+	
+	assert.that(carpaRubia.quiereEntrar(franco))
+	assert.that(carpaRubia.dejaIngresar(franco))
+	assert.that(carpaRubia.puedeEntrar(franco))
+	assert.that(carpaRubia.ingresaPersona(franco))
+	
+	carpaRubia.servirJarra(franco, 0.5)
+	
+	assert.equals(0,carpaRubia.ebriosEmpedernidos())
+	assert.that(franco.esPatriota())
+
+}

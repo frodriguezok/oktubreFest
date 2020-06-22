@@ -1,0 +1,52 @@
+import marcas.*
+import jarras.*
+import personas.*
+
+test "contenido de alcohol" {
+
+	const roja = new CervezaRoja()
+	const jarra = new Jarras()
+	
+	graduacionReglamentaria.graduacion(0.08)
+	roja.lupulo(10)
+	jarra.capacidad(0.5)
+	jarra.contenido(roja)
+	
+	assert.equals(0.1, roja.graduacionAlcoholica())
+	assert.equals(0.05, jarra.contenidoDeAlcohol())
+}
+
+test "total de alcohol y si esta ebria" {
+	const rubia = new CervezaRubia()
+	const negra = new CervezaNegra()
+	const roja2 = new CervezaRoja()
+	const jarra = new Jarras()
+	const jarra2 = new Jarras()
+	const jarra3 = new Jarras()
+	const juan = new Alemanes()
+	
+	juan.peso(80)
+	juan.nivelDeAguante(50)
+	juan.marcasQueLeGustan(roja2)
+	juan.marcasQueLeGustan(rubia)
+	roja2.lupulo(10)
+	rubia.graduacionAlcoholica(0.03)
+	negra.lupulo(5)
+	graduacionReglamentaria.graduacion(0.08)
+	
+	jarra.capacidad(1)
+	jarra.contenido(roja2)
+	jarra2.capacidad(1)
+	jarra2.contenido(negra)
+	jarra3.capacidad(1)
+	jarra3.contenido(rubia)
+	
+	juan.comprarJarras(jarra)
+	juan.comprarJarras(jarra2)
+	juan.comprarJarras(jarra3)
+	
+	assert.equals(0.21,juan.totalDeAlcohol())
+	assert.notThat(juan.estaEbria())
+	assert.that(juan.leGusta(rubia))
+	assert.that(juan.leGusta(roja2))
+}
